@@ -1,0 +1,52 @@
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/mainPage">Home</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<body>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <label for="contact">Contacts</label>
+            <select class="form-control" ng-model="contactSelected" name="contact"  ng-change="getContact(contactSelected)" ng-options = "con as (con.first_name + ' - ' + con.last_name) for con in contacts track by con.id"></select>
+        </div>
+        <div class="panel-body">
+            <form name="newContact" novalidate>
+
+                    <div class="form-group" >
+
+                            <label for="login">Login</label>
+                            <input ng-model="contact.login" name="login" type="text" placeholder="REQUIRED" required />
+
+                            <label for="password">Password</label>
+                            <input ng-model="contact.password" name="password" type="password" placeholder="REQUIRED" required />
+                    </div>
+                    <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input ng-model="contact.first_name" name="first_name" type="text" placeholder="REQUIRED" required />
+
+                            <label for="last_name">Last Name</label>
+                            <input ng-model="contact.last_name" name="last_name" type="text" placeholder="REQUIRED" required />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="organization">Organizations</label>
+                            <select class="form-control" ng-model="contact.organization" name="organization" ng-options = "org as (org.name + ' - ' + org.description) for org in organization track by org.id" required ></select>
+
+                    </div>
+
+                <button class="btn btn-default" ng-click="saveContact()">Save</button>
+                <button class="btn btn-default" ng-click="deleteContact()"  ng-disabled=canDelete>delete</button>
+                <button class="btn btn-default" ng-click="clear()">Clear</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="alert alert-warning" role="alert" ng-if="errorMessage">
+    <p>{{errorMessage}}</p>
+</div>
+</body>

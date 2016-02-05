@@ -1,0 +1,35 @@
+<header>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/mainPage">Home</a>
+        </div>
+    </div>
+</nav>
+</header>
+<body>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <label for="organizations">Organizations</label>
+            <select class="form-control" ng-model="organizationSelected" name="organization"  ng-change="getOrganization(organizationSelected)" ng-options = "org as (org.name + ' - ' + org.description) for org in organizations track by org.id"></select>
+        </div>
+        <div class="panel-body">
+            <form name="newOrganization" novalidate>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input ng-model="organization.name" name="name" type="text" placeholder="REQUIRED" required />
+                    <label for="name">Description</label>
+                    <input ng-model="organization.description" name="description" type="text" placeholder="REQUIRED" required />
+                </div>
+                <button class="btn btn-default" ng-click="organizationSave()">Save</button>
+                <button class="btn btn-default" ng-click="deleteOrganization()"  ng-disabled=canDelete>Delete</button>
+                <button class="btn btn-default" ng-click="clear()">Clear</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="alert alert-warning" role="alert" ng-if="errorMessage">
+    <p>{{errorMessage}}</p>
+</div>
+</body>
