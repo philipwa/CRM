@@ -66,6 +66,7 @@ crmApp.controller('organizationController', ['$scope', '$resource', '$routeParam
         $http.post('/saveOrganization', input)
             .success(function (results) {
                 $scope.clear();
+                $scope.getOrganizations();
                 $scope.$emit("errorMessage", "Save success");
             })
             .error(function (err) {
@@ -83,9 +84,10 @@ crmApp.controller('organizationController', ['$scope', '$resource', '$routeParam
 
     $scope.deleteOrganization = function(){
 
-        $http.delete('/deleteContact/' + $scope.organizationSelected.id.toString())
+        $http.delete('/deleteOrganization/' + $scope.organizationSelected.id.toString())
             .success(function (results) {
                 $scope.clear();
+                $scope.getOrganizations();
                 $scope.$emit("errorMessage", "Delete success");
             })
             .error(function (err) {
@@ -96,6 +98,9 @@ crmApp.controller('organizationController', ['$scope', '$resource', '$routeParam
     $scope.getOrganizations = function(){
         $http.get('/getOrganizations')
             .success(function (results) {
+
+                $scope.organizations = [];
+
                 for(var i = 0;i< results.length ;i++){
                     $scope.organizations.push(results[i]);
                 }
@@ -137,6 +142,7 @@ crmApp.controller('contactController', ['$scope', '$resource', '$routeParams','$
 
         $http.get('/getContacts')
             .success(function (results) {
+                $scope.contacts= [];
                 for(var i = 0;i< results.length ;i++){
                     $scope.contacts.push( results[i] );
                 }
@@ -150,6 +156,8 @@ crmApp.controller('contactController', ['$scope', '$resource', '$routeParams','$
     $scope.getOrganizations = function(){
         $http.get('/getOrganizations')
             .success(function (results) {
+                $scope.organization = [];
+
                 for(var i = 0;i< results.length ;i++){
                     $scope.organization.push(results[i]);
                 }
@@ -166,6 +174,7 @@ crmApp.controller('contactController', ['$scope', '$resource', '$routeParams','$
         $http.delete('/deleteContact/' + $scope.contactSelected.id.toString())
             .success(function (results) {
                 $scope.clear();
+                $scope.getContacts();
                 $scope.$emit("errorMessage", "delete success");
             })
             .error(function (err) {
@@ -190,6 +199,7 @@ crmApp.controller('contactController', ['$scope', '$resource', '$routeParams','$
             .success(function (results) {
 
                 $scope.clear();
+                $scope.getContacts();
                 $scope.$emit("errorMessage", "save success");
             })
             .error(function (err) {
