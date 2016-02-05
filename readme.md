@@ -33,3 +33,5 @@ psql -U username -d crm -a -f schema.sql
 2) Pull down the code from github
 
 3) Edit the config/local.json file, change the user, password, database. ( if needed )
+
+to login just use: philipjphilip@hotmail.com and any password
